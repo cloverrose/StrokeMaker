@@ -2,13 +2,95 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>Canvasの練習</title>
+    <title>Stroke Maker</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Canvasの練習</h1>
-<canvas id="mycanvas" width="400" height="200">
-Canvasに対応したブラウザを使ってください。
-</canvas>
-<script src="myscript.js"></script>
+<div class="container">
+  <center>
+    <h1 style="color:blue">Stroke Maker</h1>
+  </center>
+  <div class="row">
+    <div class="span6">
+      <form class="form-horizontal" action="#">
+        <div class="control-group">
+          <div class="controls">
+            <input type="file" id="files" name="files[]"/>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="selecter">template</label>
+          <div class="controls">
+            <select id="selecter" onChange="selectChange()">
+              <option>Android</option>
+              <option>Canvas</option>
+            </select>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="init">init</label>
+          <div class="controls">
+            <input type="text" id="init"
+                   placeholder="path = new Path();\nthis.paths.add(path);">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="moveto">moveTo</label>
+          <div class="controls">
+            <input type="text" id="moveto"
+                   placeholder="path.moveTo($Xf, $Yf);">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="lineto">lineTo</label>
+          <div class="controls">
+            <input type="text" id="lineto"
+                   placeholder="path.lineTo($Xf, $Yf);">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="fin">fin</label>
+          <div class="controls">
+            <input type="text" id="fin"
+                   placeholder="">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <div class="btn-group">
+              <a href="#" class="btn" id="prevbtn">Prev</a>
+              <a href="#" class="btn" id="nextbtn">Next</a>
+              <a href="#" class="btn btn-primary" id="finbtn">Fin</a>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <div id="output"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="span6">
+      <div class="row">
+        <div style="position:relative;left:0px;top:0px;">
+          <canvas id="background" width="800" height="800"
+                  style="z-index: 1;position:absolute;left:0px;top:0px;">
+          </canvas>
+          <canvas id="mycanvas" width="800" height="800"
+                  style="z-index: 2;position:absolute;left:0px;top:0px;">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/templates.js"></script>
+<script src="js/draws.js"></script>
+<script src="js/myscript.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
