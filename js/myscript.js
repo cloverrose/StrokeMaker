@@ -13,6 +13,7 @@ window.onload = function(){
     setupFileSelect();
     setupdrawcanvas();
     setupButton();
+    setupTemplates();
 }
 
 function setupdrawcanvas(){
@@ -100,15 +101,6 @@ function fileSelect(evt){
     reader.readAsDataURL(file);
 }
 
-function selectChange(){
-    // テンプレートを選択した時の動作
-    var selected = $("#selecter").val();
-    var template = templates[selected];
-    $("#init").val(template["init"]);
-    $("#moveto").val(template["moveto"]);
-    $("#lineto").val(template["lineto"]);
-    $("#fin").val(template["fin"]);
-}
 
 function draw(){
     for(var i=0; i<data.length; i++){
@@ -185,4 +177,29 @@ function setupButton(){
         }
         $("#output").html(str);
     });
+}
+
+
+function selectChange(){
+    // テンプレートを選択した時の動作
+    var selected = $("#selecter").val();
+    for(var i=0; i<templates.length; i++){
+        if(templates[i]["key"] == selected){
+            var template = templates[i];
+            $("#init").val(template["init"]);
+            $("#moveto").val(template["moveto"]);
+            $("#lineto").val(template["lineto"]);
+            $("#fin").val(template["fin"]);
+        }
+    }
+}
+
+function setupTemplates(){
+    var selecter = document.getElementById('selecter');
+    console.log('here');
+    console.dir(templates);
+    for(var i=0; i<templates.length; i++){
+        selecter.options[i] =
+            new Option(templates[i]["key"], templates[i]["key"]);
+    }
 }
