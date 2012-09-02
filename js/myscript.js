@@ -179,6 +179,12 @@ function setupButton(){
     });
 }
 
+function setTemplate(template){
+    $("#init").val(template["init"]);
+    $("#moveto").val(template["moveto"]);
+    $("#lineto").val(template["lineto"]);
+    $("#fin").val(template["fin"]);
+}
 
 function selectChange(){
     // テンプレートを選択した時の動作
@@ -186,10 +192,7 @@ function selectChange(){
     for(var i=0; i<templates.length; i++){
         if(templates[i]["key"] == selected){
             var template = templates[i];
-            $("#init").val(template["init"]);
-            $("#moveto").val(template["moveto"]);
-            $("#lineto").val(template["lineto"]);
-            $("#fin").val(template["fin"]);
+            setTemplate(template);
         }
     }
 }
@@ -201,5 +204,10 @@ function setupTemplates(){
     for(var i=0; i<templates.length; i++){
         selecter.options[i] =
             new Option(templates[i]["key"], templates[i]["key"]);
+    }
+
+    if(templates.length > 0){
+        var template = templates[0];
+        setTemplate(template);
     }
 }
